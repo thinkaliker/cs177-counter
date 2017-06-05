@@ -1,61 +1,88 @@
 <html>
+
 <head>
-<title>Counter for UCR CS 177</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<style>
-* { font-family: 'Roboto', sans-serif; }
-</style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+  <title>Counter for UCR CS 177</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> </head>
+
 <body>
-<h1>Counter for UCR CS 177</h1>
-Type the number of people you see going in or out of the building and click the button to log that number with a timestamp. You can also press enter inside the textbox after entering data to log the data. Data is not stored anywhere so if you refresh the page, you lose the data. Results are CSV, printed below.
-    
-<a href="https://github.com/thinkaliker/cs177-counter" target="_blank">https://github.com/thinkaliker/cs177-counter</a>
-<h1>IN</h1>
-<input type="number" name="in" value="" id="in"> <button onclick="log(1)">log with timestamp</button>
-<h1>OUT</h1>
-<input type="number" name="out" value="" id="out"> <button onclick="log(2)">log with timestamp</button>
-<h1>Results</h1>
-<h2>In results</h2>
-<div id="in-result"></div>
-<h2>Out results</h2>
-<div id="out-result"></div>
-<script>
+  <h1>Counter for UCR CS 177</h1>
+  <p>Type the number of people you see going in or out of the building and click the button to log that number with a timestamp. You can also press enter inside the textbox after entering data to log the data. Data is not stored anywhere so if you refresh the page, you lose the data. Results are CSV, printed below.</p>
+  <p><a href="https://github.com/thinkaliker/cs177-counter" target="_blank">https://github.com/thinkaliker/cs177-counter</a></p>
+  <h1>IN</h1>
+  <input type="number" name="in" value="" id="in">
+  <button onclick="log(1)">log with timestamp</button>
+  <h1>OUT</h1>
+  <input type="number" name="out" value="" id="out">
+  <button onclick="log(2)">log with timestamp</button>
+  <h1>BETWEEN</h1>
+  <input type="number" name="between" value="" id="between">
+  <button onclick="log(3)">log with timestamp</button>
+  <h1>Results</h1>
+  <h2>In results</h2>
+  <div id="in-result"></div>
+  <h2>Out results</h2>
+  <div id="out-result"></div>
+  <h2>Between results</h2>
+  <div id="between-result"></div>
+  <script>
     var inarr = [];
     var outarr = [];
-    function log(invalue) {
-        if (invalue == 1) {
-            var input = document.getElementById('in');
-            input.value = (input.value != 0) ? input.value : 1;
-            inarr.push( input.value + ',' + Date.now());
-            input.value="";
-            var newstr = inarr[inarr.length-1] + '<br/>';
-            document.getElementById("in-result").innerHTML += newstr;
-        } else {
-            var input = document.getElementById('out');
-            input.value = (input.value != 0) ? input.value : 1;
-            outarr.push( input.value + ',' + Date.now());
-            input.value="";
-            var newstr = outarr[outarr.length-1] + '<br/>';
-            document.getElementById("out-result").innerHTML += newstr;
-        }
-        localStorage.setItem('in', inarr);
-        localStorage.setItem('out', outarr);
-    }
+    var betweenarr = [];
 
-    document.getElementById('in').addEventListener("keyup", function(event) {
-       event.preventDefault();
-       if (event.keyCode == 13) {
-           log(1);
-       }
+    function log(invalue) {
+      if (invalue == 1) {
+        var input = document.getElementById('in');
+        input.value = (input.value != 0) ? input.value : 1;
+        inarr.push(input.value + ',' + Date.now());
+        input.value = "";
+        var newstr = inarr[inarr.length - 1] + '<br/>';
+        document.getElementById("in-result").innerHTML += newstr;
+      }
+      else if (invalue == 2) {
+        var input = document.getElementById('out');
+        input.value = (input.value != 0) ? input.value : 1;
+        outarr.push(input.value + ',' + Date.now());
+        input.value = "";
+        var newstr = outarr[outarr.length - 1] + '<br/>';
+        document.getElementById("out-result").innerHTML += newstr;
+      }
+      else {
+        var input = document.getElementById('between');
+        input.value = (input.value != 0) ? input.value : 1;
+        betweenarr.push(input.value + ',' + Date.now());
+        input.value = "";
+        var newstr = betweenarr[betweenarr.length - 1] + '<br/>';
+        document.getElementById("between-result").innerHTML += newstr;
+      }
+      localStorage.setItem('in', inarr);
+      localStorage.setItem('out', outarr);
+      localStorage.setItem('between', betweenarr);
+    }
+    document.getElementById('in').addEventListener("keyup", function (event) {
+      event.preventDefault();
+      if (event.keyCode == 13) {
+        log(1);
+      }
     });
-    document.getElementById('out').addEventListener("keyup", function(event) {
-       event.preventDefault();
-       if (event.keyCode == 13) {
-           log(2);
-       }
+    document.getElementById('out').addEventListener("keyup", function (event) {
+      event.preventDefault();
+      if (event.keyCode == 13) {
+        log(2);
+      }
     });
-</script>
+    document.getElementById('between').addEventListener("keyup", function (event) {
+      event.preventDefault();
+      if (event.keyCode == 13) {
+        log(3);
+      }
+    });
+  </script>
 </body>
+
 </html>
