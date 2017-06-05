@@ -27,12 +27,14 @@ Type the number of people you see going in or out of the building and click the 
     function log(invalue) {
         if (invalue == 1) {
             var input = document.getElementById('in');
+            input.value = (input.value != 0) ? input.value : 1;
             inarr.push( input.value + ',' + Date.now());
             input.value="";
             var newstr = inarr[inarr.length-1] + '<br/>';
             document.getElementById("in-result").innerHTML += newstr;
         } else {
             var input = document.getElementById('out');
+            input.value = (input.value != 0) ? input.value : 1;
             outarr.push( input.value + ',' + Date.now());
             input.value="";
             var newstr = outarr[outarr.length-1] + '<br/>';
