@@ -52,7 +52,7 @@
       if (invalue == 1) {
         var input = document.getElementById('in');
         input.value = (input.value != 0) ? input.value : 1;
-        inarr.push(input.value + ',' + Date.now());
+        inarr.push(input.value + ', ' + Date.now());
         input.value = "";
         var newstr = inarr[inarr.length - 1] + '<br/>';
         document.getElementById("in-result").innerHTML += newstr;
@@ -60,7 +60,7 @@
       else if (invalue == 2) {
         var input = document.getElementById('out');
         input.value = (input.value != 0) ? input.value : 1;
-        outarr.push(input.value + ',' + Date.now());
+        outarr.push(input.value + ', ' + Date.now());
         input.value = "";
         var newstr = outarr[outarr.length - 1] + '<br/>';
         document.getElementById("out-result").innerHTML += newstr;
@@ -68,7 +68,7 @@
       else {
         var input = document.getElementById('between');
         input.value = (input.value != 0) ? input.value : 1;
-        betweenarr.push(input.value + ',' + Date.now());
+        betweenarr.push(input.value + ', ' + Date.now());
         input.value = "";
         var newstr = betweenarr[betweenarr.length - 1] + '<br/>';
         document.getElementById("between-result").innerHTML += newstr;
